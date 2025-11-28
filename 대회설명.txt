@@ -1,0 +1,85 @@
+=============================================================================
+AI Mathematical Olympiad - Progress Prize 3 (AIMO3) 대회 설명
+=============================================================================
+
+## 대회 개요
+
+AIMO(AI Mathematical Olympiad)는 국제 수학 올림피아드(IMO) 수준의 수학 문제를
+풀 수 있는 AI 모델 개발을 목표로 하는 대회입니다.
+
+Progress Prize 3는 세 번째 진행 상금 대회로:
+- AIMO1: Project Numina 팀 우승
+- AIMO2: Nvidia의 NemoSkills 팀 우승
+- AIMO3: 현재 진행 중
+
+## 상금
+
+- 총 상금: $2,207,152 (약 29억원)
+- 추가 상금: $110,000
+
+### 추가 상금 종류 (AIMO3 신설)
+1. Longest Leader Prize: 공개 리더보드 1위 유지 기간이 가장 긴 팀
+2. Write-up Prizes: 최고의 기술 설명서 작성팀
+3. MathCorpus Prize: 새로운 수학 데이터셋 공개팀
+4. Hardest Problem Prize: 가장 어려운 문제를 푼 모델
+
+## 문제 형식
+
+- 총 110개의 원본 수학 문제
+- 분야: 대수학(Algebra), 조합론(Combinatorics), 기하학(Geometry), 정수론(Number Theory)
+- 난이도: 국가 올림피아드 수준 ~ IMO 표준
+- 모든 문제는 'AI-hard'로 설계됨 (데이터 오염 위험 제로)
+
+### 답안 형식
+- AIMO3부터 답은 5자리 숫자 형식 (기존 3자리에서 변경)
+- 추측을 사실상 불가능하게 만들어 실제 수학적 추론 필요
+
+## 평가 방식
+
+- 페널티 기반 정확도 점수(Penalized Accuracy Score) 사용
+- 공개/비공개 테스트 세트에서 평가
+- 제출은 Kaggle 노트북 형식
+
+## 컴퓨팅 환경
+
+- H100 GPU 사용 가능 (AIMO2 대비 약 2배 컴퓨팅 파워)
+- 더 큰 모델 실행 가능: GPT-OSS-120B, Qwen3-Next 등
+- 일부 참가자: Fields Model Initiative 파트너십으로 최대 128 H100 GPU 사용 가능
+
+## 참가 요건
+
+- 오픈소스 알고리즘 및 모델 개발 필수
+- 수상 자격: 코드, 방법론, 데이터, 모델 파라미터 공개 필수
+- 수상자: 2026년 중국 상하이 IMO에서 AI Day 시연
+
+## 데이터 파일 구조
+
+1. reference.csv: 연습용 문제 및 정답 (10개 문제)
+   - id: 문제 고유 ID
+   - problem: LaTeX 형식의 수학 문제
+   - answer: 정답 (5자리 이하 정수)
+
+2. test.csv: 테스트 문제 (샘플에서는 3개, 실제 대회에서는 더 많음)
+   - id: 문제 고유 ID
+   - problem: LaTeX 형식의 수학 문제
+
+3. sample_submission.csv: 제출 형식 예시
+   - id: 문제 ID
+   - answer: 예측한 정답
+
+4. AIMO3_Reference_Problems.pdf: 참조 문제 PDF 버전
+
+## 핵심 전략
+
+1. 강력한 수학 추론 능력을 가진 LLM 활용
+2. Self-Consistency with Tool-Integrated Reasoning (SC-TIR) 기법
+3. 여러 답안 생성 후 투표/집계 방식
+4. Python 코드 실행을 통한 계산 검증
+
+## 참고 링크
+
+- Kaggle 대회 페이지: https://www.kaggle.com/competitions/ai-mathematical-olympiad-progress-prize-3
+- AIMO 공식 사이트: https://aimoprize.com
+- Project Numina 솔루션: https://github.com/project-numina/aimo-progress-prize
+
+=============================================================================
