@@ -29,10 +29,11 @@
    - Self-verification 로직 구현
 
 3. **모델 설정 완료**
-   - 모델: Qwen2.5-Math-72B-Instruct
-   - 경로: `/kaggle/input/qwen2.5-math/transformers/72b-instruct/1`
-   - 양자화: 4-bit (BitsAndBytes)
+   - 모델: Qwen2.5-Math-7B-Instruct (72B는 Kaggle에서 양자화 불가)
+   - 경로: `/kaggle/input/qwen2.5-math/transformers/7b-instruct/1`
+   - 양자화: 없음 (7B는 14GB로 H100에 충분)
    - GPU: H100
+   - Note: bitsandbytes가 Kaggle에 설치되어 있지 않아 72B 사용 불가
 
 4. **이전 테스트 결과** (NuminaMath-7B 사용 시)
    - 샘플 3문제 모두 정답 (0, 0, 0)
@@ -68,17 +69,17 @@ aimo3/
 
 ```python
 class Config:
-    model_id = "/kaggle/input/qwen2.5-math/transformers/72b-instruct/1"
-    num_samples = 8           # 72B는 더 똑똑해서 적게 필요
+    model_id = "/kaggle/input/qwen2.5-math/transformers/7b-instruct/1"  # 72B는 양자화 불가
+    num_samples = 32          # 7B는 빨라서 더 많은 샘플링
     temperature = 0.7
     max_new_tokens = 2048
     top_p = 0.95
     code_timeout = 10
     max_code_executions = 3
     enable_feedback_loop = True
-    max_feedback_turns = 1
+    max_feedback_turns = 2    # 더 많은 피드백 턴
     enable_verification = True
-    use_4bit = True           # 4-bit 양자화
+    use_4bit = False          # 7B는 양자화 불필요 (14GB)
 ```
 
 ---
@@ -148,7 +149,7 @@ class Config:
 2. Code 탭 → New Notebook
 3. File → Import Notebook → `kaggle_submission_notebook.ipynb` 업로드
 4. **+ Add Input**:
-   - Models: `qwen2.5-math` (72b-instruct)
+   - Models: `qwen2.5-math` (7b-instruct) ← 72b는 양자화 없이 불가능
    - (대회 데이터는 자동 연결됨)
 5. Settings → Accelerator → **H100**
 6. **Run All** → 테스트 실행
@@ -223,3 +224,4 @@ Self-verification
 | 2024-11-29 | NuminaMath-7B → Qwen2.5-Math-72B 업그레이드 |
 | 2024-11-29 | H100 + 4-bit 양자화 설정 |
 | 2024-11-29 | 6단계 우승 전략 수립 |
+| 2024-11-29 | 72B → 7B 다운그레이드 (Kaggle에 bitsandbytes 미설치) |

@@ -4,7 +4,7 @@
 
 ### Kaggle 제출
 1. `kaggle_submission_notebook.ipynb`를 Kaggle에 Import
-2. Model 추가: `qwen2.5-math` (72b-instruct)
+2. Model 추가: `qwen2.5-math` (7b-instruct) ← 72B는 양자화 없이 안 돌아감
 3. GPU: H100 선택
 4. Run All → Submit
 
@@ -32,10 +32,10 @@ aimo3/
 ## 핵심 설정
 
 ```python
-Model: Qwen2.5-Math-72B-Instruct
+Model: Qwen2.5-Math-7B-Instruct  # 72B는 Kaggle에서 양자화 불가
 GPU: H100
-Quantization: 4-bit (BitsAndBytes)
-Samples: 8 (Self-Consistency)
+Quantization: None (7B는 14GB로 충분)
+Samples: 32 (더 많은 샘플링으로 정확도 보완)
 Features: Feedback Loop + Self-Verification
 ```
 
@@ -46,7 +46,6 @@ Features: Feedback Loop + Self-Verification
 | 문서 | 설명 |
 |------|------|
 | `PROJECT_STATUS.md` | 현재 상태, 다음 할 일, 코드 설명 |
-| `우승전략.md` | 6단계 우승 전략 상세 |
 | `대회설명.txt` | AIMO3 대회 규칙 및 정보 |
 
 ---
